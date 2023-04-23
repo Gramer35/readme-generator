@@ -1,49 +1,94 @@
 // TODO: Include packages needed for this application
-const inquirer = requires('inquirer');
-const fs = requires('fs');
+const inquirer = require('inquirer');
+const fs = require('fs');
 
 // TODO: Create an array of questions for user input
 const questions = [
     {
-        // Need to have this be entered - if no answer need it to alert
+        // every other question prompts the else when all should be, why
         type: 'input',
         name: 'title',
         message: 'What is the tile of your project?',
+        validate: titleInput => {
+            if(titleInput) {
+                return true;
+            } else {
+                console.log('Please enter your project title!');
+            }
+        }
     },
     {
         type: 'input',
         name: 'description',
-        message: 'Please provide a brief description of your project.'
+        message: 'Please provide a brief description of your project.',
+        validate: descriptionInput => {
+            if(descriptionInput) {
+                return true;
+            } else {
+                console.log('Please enter your project description!');
+            }
+        }
     },
     {
         type: 'input',
         name: 'installation',
-        message: 'How does a user install your project?'
+        message: 'How does a user install your project?',
+        validate: installInput => {
+            if(installInput) {
+                return true;
+            } else {
+                console.log('Please enter your project installation steps!');
+            }
+        }
     },
     {
         type: 'input',
         name: 'usage',
-        message: 'Please decribe how will your project be used.'
+        message: 'Please decribe how will your project be used.',
+        validate: usageInput => {
+            if(usageInput) {
+                return true;
+            } else {
+                console.log('Please enter your project usage explanation!');
+            }
+        }
     },
     {
         // Need to have a way to respond yes or no.
-        // Need to have user input contributing guidelines.
         type: 'input',
         name: 'contribution',
-        message: 'Do you want to allow contributors?'
+        message: 'Do you want to allow contributors?',
+        validate: contributionInput => {
+            if(contributionInput) {
+                return true;
+            } else {
+                console.log('Please state if you will allow contributors!');
+            }
+        }
     },
     {
         type: 'input',
         name: 'test',
-        message: 'Please provide instructions on how to test your project.'
+        message: 'Please provide instructions on how to test your project.',
+        validate: testInput => {
+            if(testInput) {
+                return true;
+            } else {
+                console.log('Please enter how to test your project!');
+            }
+        }
     }
 ];
 
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+    fs.writeFile('./generated-README.md', data)
+}
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+    return inquirer.prompt(questions);
+}
 
 // Function call to initialize app
 init();
