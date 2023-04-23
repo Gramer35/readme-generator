@@ -1,6 +1,8 @@
 // TODO: Include packages needed for this application
 const inquirer = require('inquirer');
 const fs = require('fs');
+const generateMarkdown = require('./utils/generateMarkdown.js');
+const { log } = require('console');
 
 // TODO: Create an array of questions for user input
 const questions = [
@@ -10,10 +12,10 @@ const questions = [
         name: 'title',
         message: 'What is the tile of your project?',
         validate: titleInput => {
-            if(titleInput) {
+            if (titleInput) {
                 return true;
             } else {
-                console.log('Please enter your project title!');
+                return 'Please enter your project title!';
             }
         }
     },
@@ -22,10 +24,10 @@ const questions = [
         name: 'description',
         message: 'Please provide a brief description of your project.',
         validate: descriptionInput => {
-            if(descriptionInput) {
+            if (descriptionInput) {
                 return true;
             } else {
-                console.log('Please enter your project description!');
+                return 'Please enter your project description!';
             }
         }
     },
@@ -34,10 +36,10 @@ const questions = [
         name: 'installation',
         message: 'How does a user install your project?',
         validate: installInput => {
-            if(installInput) {
+            if (installInput) {
                 return true;
             } else {
-                console.log('Please enter your project installation steps!');
+                return 'Please enter your project installation steps!';
             }
         }
     },
@@ -46,10 +48,10 @@ const questions = [
         name: 'usage',
         message: 'Please decribe how will your project be used.',
         validate: usageInput => {
-            if(usageInput) {
+            if (usageInput) {
                 return true;
             } else {
-                console.log('Please enter your project usage explanation!');
+                return 'Please enter your project usage explanation!';
             }
         }
     },
@@ -59,10 +61,10 @@ const questions = [
         name: 'contribution',
         message: 'Do you want to allow contributors?',
         validate: contributionInput => {
-            if(contributionInput) {
+            if (contributionInput) {
                 return true;
             } else {
-                console.log('Please state if you will allow contributors!');
+                return 'Please state if you will allow contributors!';
             }
         }
     },
@@ -71,10 +73,10 @@ const questions = [
         name: 'test',
         message: 'Please provide instructions on how to test your project.',
         validate: testInput => {
-            if(testInput) {
+            if (testInput) {
                 return true;
             } else {
-                console.log('Please enter how to test your project!');
+                return 'Please enter how to test your project!';
             }
         }
     }
@@ -82,12 +84,22 @@ const questions = [
 
 // TODO: Create a function to write README file
 function writeToFile(fileName, data) {
-    fs.writeFile('./generated-README.md', data)
+    fs.writeFile(fileName, data, err => {
+        if (err) {
+            console.log(err);
+            return;
+        }
+        console.log('README generated!');
+    });
 }
 
 // TODO: Create a function to initialize app
 function init() {
-    return inquirer.prompt(questions);
+    inquirer.prompt(questions)
+        .then((data) => {
+            generateMarkdown(data);
+            writeToFile('./generated-README.md', generateMarkdown(data));
+        })
 }
 
 // Function call to initialize app
