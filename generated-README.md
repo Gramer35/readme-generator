@@ -1,2 +1,2 @@
-# Chris' Projecty
+# Chris' Project
 

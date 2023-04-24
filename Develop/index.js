@@ -92,6 +92,33 @@ const questions = [
             }
         }
     },
+    {
+        type: 'input',
+        name: 'github',
+        message: 'Please provide your github username.',
+        validate: githubInput => {
+            if (githubInput) {
+                return true;
+            } else {
+                return 'Please enter your github username!';
+            }
+
+        }
+    },
+    {
+        type: 'input',
+        name: 'email',
+        message: 'Please enter your email.',
+        validate: emailInput => {
+            if (emailInput) {
+                return true;
+            } else {
+                return 'Please enter your email!';
+            }
+    
+        }
+
+    }
 
 ];
 
