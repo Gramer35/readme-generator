@@ -62,7 +62,6 @@ const questions = [
         default: true
     },
     {
-        // Need to have a way to respond yes or no.
         type: 'input',
         name: 'contribution',
         message: 'Please provide the guidelines for contributors.',
