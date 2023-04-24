@@ -56,15 +56,28 @@ const questions = [
         }
     },
     {
+        type: 'confirm',
+        name: 'confirmContributors',
+        message: 'Do you want others to Contribute?',
+        default: true
+    },
+    {
         // Need to have a way to respond yes or no.
         type: 'input',
         name: 'contribution',
-        message: 'Do you want to allow contributors?',
+        message: 'Please provide the guidelines for contributors.',
+        when: ({ confirmContributors }) => {
+            if (confirmContributors) {
+                return true;
+            } else {
+                return false;
+            }
+        },
         validate: contributionInput => {
             if (contributionInput) {
                 return true;
             } else {
-                return 'Please state if you will allow contributors!';
+                return 'Please state the guidelines for contributors!';
             }
         }
     },
@@ -79,7 +92,8 @@ const questions = [
                 return 'Please enter how to test your project!';
             }
         }
-    }
+    },
+
 ];
 
 // TODO: Create a function to write README file
@@ -97,8 +111,7 @@ function writeToFile(fileName, data) {
 function init() {
     inquirer.prompt(questions)
         .then((data) => {
-            generateMarkdown(data);
-            writeToFile('./generated-README.md', generateMarkdown(data));
+            writeToFile('../generated-README.md', generateMarkdown(data));
         })
 }
 
@@ -114,8 +127,6 @@ init();
 // WHEN I am prompted for information about my application repository
 // THEN a high-quality, professional README.md is generated with the title of my project and sections entitled Description, Table of Contents, Installation, Usage, License, Contributing, Tests, and Questions
 
-// WHEN I enter my project title
-// THEN this is displayed as the title of the README
 
 // WHEN I enter a description, installation instructions, usage information, contribution guidelines, and test instructions
 // THEN this information is added to the sections of the README entitled Description, Installation, Usage, Contributing, and Tests
