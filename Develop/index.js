@@ -118,6 +118,12 @@ const questions = [
     
         }
 
+    },
+    {
+        type: 'list',
+        name: 'license',
+        message: 'Which license would you like to use for your project?',
+        choices: ['no license', 'agpl-3.0', 'mpl-2.0', 'mit', 'bsl-1.0']
     }
 
 ];
