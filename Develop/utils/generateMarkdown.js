@@ -24,7 +24,7 @@ function renderLicenseLink(license) {
 // If there is no license, return an empty string
 function renderLicenseSection(license) {
   if (license !== 'no license') {
-    return `## [License](#table-of-contents)
+    return `# [License](#table-of-contents)
     
     This application is covered with the following license:
     
@@ -36,46 +36,44 @@ function renderLicenseSection(license) {
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-  return `# ${data.title}
+  return `# ${data.title}    ${renderLicenseBadge(data.license)}
 
-${renderLicenseBadge(data.license)}
+# Table-of-Contents
 
-### Table-of-Contents
+[Description](#description) |
+[Installation](#installation)  |
+[Usage](#usage)  |
+[Contributing](#contributing)  |
+[Test](#test)  |
+[Questions](#questions)  |
 
-[Description](#description) \n
-[Installation](#installation) \n
-[Usage](#usage) \n
-[Contributing](#contributing) \n
-[Test](#test) \n
-[Questions](#questions) \n
-
-### [Description](#table-of-contents)
+# [Description](#table-of-contents)
 
 ${data.description}
 
-### [Installation](#table-of-contents)
+# [Installation](#table-of-contents)
 
 ${data.installation}
 
-### [Usage](#table-of-contents)
+# [Usage](#table-of-contents)
 
 ${data.usage}
 
-### [Contributing](#contributing)
+# [Contributing](#contributing)
 
 ${data.confirmContributors}
 
-### [Test](#test)
+# [Test](#test)
 
 ${data.test}
 
 ${renderLicenseSection(data.license)}
 
-### [Questions](#questions)
+# [Questions](#questions)
 
 If you have any questions, please feel free to reach out to me at the following links.
 
-[GitHub](https://github.com/${data.github}) \n
+[GitHub](https://github.com/${data.github}) |
 [Email: ${data.email}](mailto:${data.email})
 
 
