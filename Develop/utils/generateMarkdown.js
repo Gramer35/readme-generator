@@ -14,7 +14,7 @@ function renderLicenseBadge(license) {
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
   if (license !== 'no license') {
-    return `[${license}](https://choosealicense.com/license/${license}/)`;
+    return `[${license}](https://opensource.org/licenses/${license})`;
   } else {
     return '';
   }
@@ -42,12 +42,12 @@ ${renderLicenseBadge(data.license)}
 
 ### Table-of-Contents
 
-*[Description](#description) \n
-*[Installation](#installation) \n
-*[Usage](#usage) \n
-*[Contributing](#contributing) \n
-*[Test](#test) \n
-*[Questions](#questions) \n
+[Description](#description) \n
+[Installation](#installation) \n
+[Usage](#usage) \n
+[Contributing](#contributing) \n
+[Test](#test) \n
+[Questions](#questions) \n
 
 ### [Description](#table-of-contents)
 
@@ -69,7 +69,9 @@ ${data.confirmContributors}
 
 ${data.test}
 
-###[Questions](#questions)
+${renderLicenseSection(data.license)}
+
+### [Questions](#questions)
 
 If you have any questions, please feel free to reach out to me at the following links.
 
