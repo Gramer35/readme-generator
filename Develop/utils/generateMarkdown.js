@@ -14,7 +14,7 @@ function renderLicenseBadge(license) {
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
   if (license !== 'no license') {
-    return `[${license}](https://opensource.org/licenses/${license})`;
+    return `https://opensource.org/licenses/${license}`;
   } else {
     return '';
   }

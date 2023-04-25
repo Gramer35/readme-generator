@@ -153,13 +153,4 @@ init();
 
 
 
-// ---------------------------------------------------------
-
-// GIVEN a command-line application that accepts user input
-// WHEN I am prompted for information about my application repository
-// THEN a high-quality, professional README.md is generated with the title of my project and sections entitled Description, Table of Contents, Installation, Usage, License, Contributing, Tests, and Questions
-
-
-// WHEN I choose a license for my application from a list of options
-// THEN a notice is added to the section of the README entitled License that explains which license the application is covered under
 
