@@ -2,8 +2,9 @@
 // If there is no license, return an empty string
 function renderLicenseBadge(license) {
   if (license !== 'no license') {
-    return `
-    ![badge](https://img.shields.io/badge/license-${license}-green)`;
+    return `[![License](https://img.shields.io/badge/License-${license}-blue.svg)](https://opensource.org/licenses/${license})
+
+    `;
   } else {
     return '';
   }
@@ -13,7 +14,7 @@ function renderLicenseBadge(license) {
 // If there is no license, return an empty string
 function renderLicenseLink(license) {
   if (license !== 'no license') {
-    return `[${license}](https://choosealicense.com/license/${license})`;
+    return `[${license}](https://choosealicense.com/license/${license}/)`;
   } else {
     return '';
   }
@@ -37,26 +38,43 @@ function renderLicenseSection(license) {
 function generateMarkdown(data) {
   return `# ${data.title}
 
-  ${renderLicenseBadge(data.license)}
+${renderLicenseBadge(data.license)}
 
-  ### Table-of-Contents
+### Table-of-Contents
 
-  *[Description](#description)
-  *[Installation](#installation)
-  *[Usage](#usage)
-  *[Contributing](#contributing)
-  *[Test](#test)
-  *[Questions](#questions)
+*[Description](#description) \n
+*[Installation](#installation) \n
+*[Usage](#usage) \n
+*[Contributing](#contributing) \n
+*[Test](#test) \n
+*[Questions](#questions) \n
 
-  ### [Description](#table-of-contents)
+### [Description](#table-of-contents)
 
-  ${data.description}
+${data.description}
 
-  ### [Installation](#table-of-contents)
+### [Installation](#table-of-contents)
 
-  ${data.installation}
+${data.installation}
 
-  ### [Usage](#table-of-contents)
+### [Usage](#table-of-contents)
+
+${data.usage}
+
+### [Contributing](#contributing)
+
+${data.confirmContributors}
+
+### [Test](#test)
+
+${data.test}
+
+###[Questions](#questions)
+
+If you have any questions, please feel free to reach out to me at the following links.
+
+[GitHub](https://github.com/${data.github}) \n
+[Email: ${data.email}](mailto:${data.email})
 
 
 `;
